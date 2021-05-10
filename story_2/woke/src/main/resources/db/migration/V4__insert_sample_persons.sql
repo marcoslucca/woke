@@ -1,0 +1,2 @@
+insert into	PERSON(id, full_name, phone, email, birth_date, version, created_at, updated_at) values('d144654c-ae06-11eb-8529-0242ac130004', 'Full Name 1', '999999999', 'email@email.com', '1989/1/1', 1, '2021-05-06T01:08:14+00:00', '2021-05-06T01:08:14+00:00');
+insert into	PERSON(id, full_name, phone, email, birth_date, version, created_at, updated_at) values('d144654c-ae06-11eb-8529-0242ac130005', 'Full Name 2', '999999999', 'email2@email.com', '1989/1/1', 1, '2021-05-06T01:08:14+00:00', '2021-05-06T01:08:14+00:00');

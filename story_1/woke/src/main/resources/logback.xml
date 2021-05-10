@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <variable name="APPENDER_NAME" value="${LOGGER_APPENDER_NAME:-jsonAppender}" />
+    <variable name="ENVIRONMENT" value="${ENV:-local}" />
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{dd-MM-yyyy HH:mm:ss.SSS} "service": "${springAppName:-}" "trace-id": "%X{traceId:-}", "span-id": "%X{spanId:-}" %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="jsonAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+
+            <providers>
+                <arguments/>
+                <mdc />
+                <pattern>
+                    <pattern>
+                        {
+                        "timestamp": "%d{yyyy-MM-dd HH:mm:ss.SSS}",
+                        "timezone": "%d{Z}",
+                        "environment": "${ENVIRONMENT}",
+                        "host": "${HOSTNAME}",
+                        "level": "%level",
+                        "application": "${springAppName:-}",
+                        "trace-id": "%X{traceId:-}",
+                        "span-id": "%X{spanId:-}",
+                        "logger_full_name": "%logger",
+                        "logger_name": "%logger{0}",
+                        "method": "%M",
+                        "thread_name": "%thread",
+                        "stack_trace": "%ex",
+                        "message": "%message"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="${APPENDER_NAME}"/>
+    </root>
+
+</configuration>

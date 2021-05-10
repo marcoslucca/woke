@@ -1,0 +1,9 @@
+FROM openjdk:11-jdk
+
+ENV JAR_NAME woke-*.jar
+
+COPY build/libs/$JAR_NAME $JAR_NAME
+
+EXPOSE 8080
+
+ENTRYPOINT java -Duser.timezone=America/Sao_Paulo -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8080 -jar $JAR_NAME

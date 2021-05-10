@@ -1,0 +1,2 @@
+insert into	users(id, username, password, version, created_at, updated_at) values('d144654c-ae06-11eb-8529-0242ac130004', 'user1', '25d55ad283aa400af464c76d713c07ad', 1, '2021-05-06T01:08:14+00:00', '2021-05-06T01:08:14+00:00');
+insert into	users(id, username, password, version, created_at, updated_at) values('d144654c-ae06-11eb-8529-0242ac130005', 'user2', '25d55ad283aa400af464c76d713c07ad', 1, '2021-05-06T01:08:14+00:00', '2021-05-06T01:08:14+00:00');
